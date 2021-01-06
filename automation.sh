@@ -41,7 +41,7 @@ while [ $answer -eq 8 ]; do
                 read username
                 sudo adduser $username
                 sudo usermod -aG sudo $username
-                sudo nano /etc/ssh/sshd.config
+                sudo nano /etc/ssh/sshd_config
                 echo "Restart sshd.service"
                 sudo systemctl restart sshd.service
         elif [ $answer -eq 2 ]; then
