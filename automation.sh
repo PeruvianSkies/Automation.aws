@@ -93,7 +93,7 @@ while [ $answer -eq 8 ]; do
                 sudo su
                 echo -n "Enter IP Master : "
                 read ip_master
-                kubeadm init --apiserver-advertise-address=$ip_master --pod-network-cidr=192.168.0.0/16
+                sudo kubeadm init --apiserver-advertise-address=$ip_master --pod-network-cidr=192.168.0.0/16
                 echo "After initialize don't forget to checking nodes = kubectl get nodes"
                 echo "Start using Cluster as a reguler user"
                 mkdir -p $HOME/.kube
