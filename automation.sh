@@ -21,8 +21,10 @@ menu_list() {
         echo "5. Calico Pod Network Add-on"
         echo "6. Cilium Pod Network Add-on"
         echo "7. Antrea Pod Network Add-on"
+        echo "8. Git Clone"
+        echo "9. Menu"
         echo "================================="
-        echo -n "Pick to install [1/2/3/4/5/6/7] : "
+        echo -n "Pick to install [1/2/3/4/5/6/7/8/9] : "
 }
 
 # debian Update & Upgrade
@@ -88,6 +90,7 @@ while [ $answer -eq 8 ]; do
                 echo "Install kubelet kubeadm kubectl"
                 sudo apt install -y kubelet kubeadm kubectl
                 echo "initialize kubeadm from node master"
+                sudo su
                 echo -n "Enter IP Master : "
                 read ip_master
                 kubeadm init --apiserver-advertise-address=$ip_master --pod-network-cidr=192.168.0.0/16
@@ -121,6 +124,11 @@ while [ $answer -eq 8 ]; do
                 read TAG
                 kubectl apply -f https://github.com/vmware-tanzu/antrea/releases/download/$TAG/antrea.yml
                 kubectl get nodes
+        elif [ $answer -eq 8 ]; then
+                echo "Git Clone My Playbook"
+                echo -n "Enter git URL : "
+                read giturl
+                git clone $giturl
         else
                 menu_list
                 answer=8
