@@ -72,6 +72,9 @@ while [ $answer -eq 8 ]; do
                 sudo apt-get install docker-ce docker-ce-cli containerd.io
                 echo "Add current user to docker group"
                 sudo usermod -aG docker $(whoami)
+                sudo groupadd docker
+                sudo gpasswd -a ${USER} docker
+                su - $USER
         elif [ $answer -eq 4 ]; then
                 echo "Kubernetes Installation"
                 sudo apt install -y apt-transport-https curl
